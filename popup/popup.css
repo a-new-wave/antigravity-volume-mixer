@@ -129,88 +129,140 @@ body {
   transition: background 0.3s ease, padding 0.2s cubic-bezier(0.4, 0, 0.2, 1), gap 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Header ──────────────────────────────────────────────────────── */
+/* ─── Header Redesign (Premium Glassmorphic Console) ──────────────── */
 .mixer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 12px;
-  background: var(--bg-panel);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: var(--glass-border);
-  border-radius: 10px;
-  box-shadow: var(--glass-shadow);
+  padding: 8px 14px;
+  background: linear-gradient(135deg, rgba(39, 39, 39, 0.7) 0%, rgba(21, 21, 21, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+:root[data-theme="light"] .mixer-header {
+  background: linear-gradient(135deg, rgba(248, 248, 248, 0.8) 0%, rgba(240, 240, 240, 0.95) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+.header-brand-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.brand-glow-effect {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, var(--accent-cyan-glow) 0%, transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
 }
 
 .brand-icon {
   color: var(--accent-cyan);
-  filter: drop-shadow(0 0 4px var(--accent-cyan-glow));
-  animation: pulse 2s infinite alternate;
+  filter: drop-shadow(0 0 5px var(--accent-cyan-glow));
+  animation: pulse 2.5s infinite alternate;
 }
 
 .brand-title {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
 }
 
-.brand-accent {
-  color: var(--accent-violet);
-  margin-left: 2px;
+.brand-accent-text {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.brand-sub-text {
+  color: var(--accent-cyan);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-left: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  opacity: 0.9;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 6px;
-}
-
-.header-select {
-  background: var(--input-bg);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  padding: 4px 6px;
-  border-radius: 5px;
-  font-size: 11px;
-  font-family: inherit;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.header-select:hover {
-  border-color: var(--text-muted);
+  z-index: 2;
 }
 
 .header-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: relative;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+:root[data-theme="light"] .header-btn {
+  background: rgba(0, 0, 0, 0.03);
+}
+
 .header-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--text-muted);
   color: var(--text-primary);
-  transform: translateY(-1px);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] .header-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .header-btn:active {
   transform: translateY(0);
+}
+
+.header-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.header-btn:hover svg {
+  transform: scale(1.1);
+}
+
+#btn-theme-toggle svg {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#btn-theme-toggle:hover svg {
+  transform: rotate(30deg) scale(1.1);
 }
 
 /* ─── Sections ────────────────────────────────────────────────────── */

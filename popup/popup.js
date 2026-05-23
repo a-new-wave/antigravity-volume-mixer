@@ -12,7 +12,7 @@ const btnMuteAll     = document.getElementById('btn-mute-all');
 const btnResetAll    = document.getElementById('btn-reset-all');
 const statusToast    = document.getElementById('status-toast');
 const btnThemeToggle = document.getElementById('btn-theme-toggle');
-const selectSpacing  = document.getElementById('select-spacing');
+const btnSpacingToggle = document.getElementById('btn-spacing-toggle');
 const toggleChannels = document.getElementById('toggle-channels');
 const toggleAudible  = document.getElementById('toggle-audible');
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   btnMuteAll.addEventListener('click', handleMuteAll);
   btnResetAll.addEventListener('click', handleResetAll);
   btnThemeToggle.addEventListener('click', toggleTheme);
-  selectSpacing.addEventListener('change', changeSpacing);
+  btnSpacingToggle.addEventListener('click', cycleSpacing);
   toggleChannels.addEventListener('click', () => toggleSection('channels'));
   toggleAudible.addEventListener('click', () => toggleSection('audible'));
 
@@ -81,14 +81,38 @@ async function toggleTheme() {
 
 function setSpacing(spacing) {
   document.documentElement.setAttribute('data-spacing', spacing);
-  selectSpacing.value = spacing;
+  
+  // Update button title
+  const formattedName = spacing.charAt(0).toUpperCase() + spacing.slice(1);
+  btnSpacingToggle.title = `Spacing Density: ${formattedName}`;
+
+  // Toggle SVG visibility
+  const iconComfy = btnSpacingToggle.querySelector('.spacing-icon-comfortable');
+  const iconNormal = btnSpacingToggle.querySelector('.spacing-icon-normal');
+  const iconCompact = btnSpacingToggle.querySelector('.spacing-icon-compact');
+
+  if (iconComfy && iconNormal && iconCompact) {
+    iconComfy.style.display = spacing === 'comfortable' ? 'block' : 'none';
+    iconNormal.style.display = spacing === 'normal' ? 'block' : 'none';
+    iconCompact.style.display = spacing === 'compact' ? 'block' : 'none';
+  }
 }
 
-async function changeSpacing() {
-  const spacing = selectSpacing.value;
-  setSpacing(spacing);
-  await chrome.storage.local.set({ spacing });
-  showToast(`Spacing set to ${spacing}`, 'success');
+async function cycleSpacing() {
+  const currentSpacing = document.documentElement.getAttribute('data-spacing') || 'normal';
+  let newSpacing = 'normal';
+
+  if (currentSpacing === 'comfortable') {
+    newSpacing = 'normal';
+  } else if (currentSpacing === 'normal') {
+    newSpacing = 'compact';
+  } else if (currentSpacing === 'compact') {
+    newSpacing = 'comfortable';
+  }
+
+  setSpacing(newSpacing);
+  await chrome.storage.local.set({ spacing: newSpacing });
+  showToast(`Spacing set to ${newSpacing}`, 'success');
 }
 
 // ─── Collapsible Sections ────────────────────────────────────────────
