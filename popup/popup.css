@@ -249,6 +249,34 @@ body {
   transform: translateY(0);
 }
 
+.btn-paypal {
+  width: auto;
+  padding: 0 10px;
+  background: rgba(0, 121, 193, 0.08);
+  border-color: rgba(0, 121, 193, 0.25);
+  color: #0079C1;
+}
+
+:root[data-theme="light"] .btn-paypal {
+  background: rgba(0, 121, 193, 0.05);
+  border-color: rgba(0, 121, 193, 0.15);
+  color: #00457C;
+}
+
+.btn-paypal:hover {
+  background: #0079C1 !important;
+  border-color: #0079C1 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(0, 121, 193, 0.5) !important;
+}
+
+:root[data-theme="light"] .btn-paypal:hover {
+  background: #00457C !important;
+  border-color: #00457C !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(0, 69, 124, 0.3) !important;
+}
+
 .header-btn svg {
   transition: transform 0.2s ease;
 }

@@ -15,6 +15,7 @@ const btnThemeToggle = document.getElementById('btn-theme-toggle');
 const btnSpacingToggle = document.getElementById('btn-spacing-toggle');
 const toggleChannels = document.getElementById('toggle-channels');
 const toggleAudible  = document.getElementById('toggle-audible');
+const btnPaypal      = document.getElementById('btn-paypal');
 
 // ─── State ───────────────────────────────────────────────────────────
 let mixerState   = { channels: {}, audibleTabs: {} };
@@ -43,6 +44,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   btnSpacingToggle.addEventListener('click', cycleSpacing);
   toggleChannels.addEventListener('click', () => toggleSection('channels'));
   toggleAudible.addEventListener('click', () => toggleSection('audible'));
+  if (btnPaypal) {
+    btnPaypal.addEventListener('click', () => {
+      chrome.tabs.create({ url: 'https://paypal.me/anewwave' });
+    });
+  }
 
   // Auto-capture the active tab on popup open
   attemptAutoCapture();
