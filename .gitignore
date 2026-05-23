@@ -1,0 +1,11 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*.log
+
+# Extension development temporary files
+*.crx
+*.zip
+.tmp/
+dist/
+node_modules/

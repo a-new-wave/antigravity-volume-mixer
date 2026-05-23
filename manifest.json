@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Antigravity Mixer",
+  "version": "1.0.0",
+  "description": "The ultimate multi-channel volume mixer. Control volume up to 900%, 3-band EQ, presets, and VU metering — in a premium popup mixing board.",
+  "permissions": [
+    "tabCapture",
+    "offscreen",
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "icons/icon-16.svg",
+    "48": "icons/icon-48.svg",
+    "128": "icons/icon-128.svg"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.svg",
+      "48": "icons/icon-48.svg",
+      "128": "icons/icon-128.svg"
+    },
+    "default_title": "Antigravity Mixer"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "volume_up_active": {
+      "suggested_key": { "default": "Alt+Up" },
+      "description": "Increase volume of active tab"
+    },
+    "volume_down_active": {
+      "suggested_key": { "default": "Alt+Down" },
+      "description": "Decrease volume of active tab"
+    },
+    "mute_toggle_active": {
+      "suggested_key": { "default": "Alt+M" },
+      "description": "Toggle mute on active tab"
+    }
+  }
+}
