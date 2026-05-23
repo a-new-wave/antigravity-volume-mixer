@@ -320,7 +320,7 @@ function createChannelStrip(ch) {
   strip.innerHTML = `
     <div class="channel-left">
       <div class="favicon-wrapper btn-focus" title="Focus Tab">
-        <img src="${ch.favIconUrl || '../icons/icon-16.svg'}" onerror="this.src='../icons/icon-16.svg'">
+        <img src="${ch.favIconUrl || '../icons/icon-16.png'}" onerror="this.src='../icons/icon-16.png'">
       </div>
       <div class="led-meter" id="led-meter-${ch.tabId}">
         ${ledBarsHtml}
@@ -566,7 +566,7 @@ function renderAudibleTabs() {
 
     item.innerHTML = `
       <div class="audible-info">
-        <img class="audible-favicon" src="${tab.favIconUrl || '../icons/icon-16.svg'}" onerror="this.src='../icons/icon-16.svg'">
+        <img class="audible-favicon" src="${tab.favIconUrl || '../icons/icon-16.png'}" onerror="this.src='../icons/icon-16.png'">
         <span class="audible-title" title="${tab.title}">${tab.title}</span>
       </div>
       <button class="btn-capture" data-tab-id="${tab.tabId}">CAPTURE</button>
