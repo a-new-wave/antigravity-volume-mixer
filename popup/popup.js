@@ -13,6 +13,8 @@ const btnResetAll    = document.getElementById('btn-reset-all');
 const statusToast    = document.getElementById('status-toast');
 const btnThemeToggle = document.getElementById('btn-theme-toggle');
 const selectSpacing  = document.getElementById('select-spacing');
+const toggleChannels = document.getElementById('toggle-channels');
+const toggleAudible  = document.getElementById('toggle-audible');
 
 // ─── State ───────────────────────────────────────────────────────────
 let mixerState   = { channels: {}, audibleTabs: {} };
@@ -23,6 +25,9 @@ let toastTimer    = null;
 document.addEventListener('DOMContentLoaded', async () => {
   // Initialise settings
   await initSettings();
+
+  // Initialise collapsible sections (collapsed by default)
+  await initCollapsibleSections();
 
   // Load state and start visualizer
   await refreshState();
@@ -36,6 +41,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   btnResetAll.addEventListener('click', handleResetAll);
   btnThemeToggle.addEventListener('click', toggleTheme);
   selectSpacing.addEventListener('change', changeSpacing);
+  toggleChannels.addEventListener('click', () => toggleSection('channels'));
+  toggleAudible.addEventListener('click', () => toggleSection('audible'));
 
   // Auto-capture the active tab on popup open
   attemptAutoCapture();
@@ -82,6 +89,47 @@ async function changeSpacing() {
   setSpacing(spacing);
   await chrome.storage.local.set({ spacing });
   showToast(`Spacing set to ${spacing}`, 'success');
+}
+
+// ─── Collapsible Sections ────────────────────────────────────────────
+async function initCollapsibleSections() {
+  const data = await chrome.storage.local.get({
+    sectionChannelsCollapsed: true,
+    sectionAudibleCollapsed: true
+  });
+
+  applySectionState('channels', data.sectionChannelsCollapsed);
+  applySectionState('audible', data.sectionAudibleCollapsed);
+}
+
+function applySectionState(section, isCollapsed) {
+  const toggleBtn = section === 'channels' ? toggleChannels : toggleAudible;
+  const content = section === 'channels' ? channelsContainer : audibleList;
+
+  if (isCollapsed) {
+    toggleBtn.classList.remove('expanded');
+    content.classList.add('collapsed');
+  } else {
+    toggleBtn.classList.add('expanded');
+    content.classList.remove('collapsed');
+  }
+}
+
+async function toggleSection(section) {
+  const toggleBtn = section === 'channels' ? toggleChannels : toggleAudible;
+  const content = section === 'channels' ? channelsContainer : audibleList;
+  const isCurrentlyCollapsed = content.classList.contains('collapsed');
+
+  if (isCurrentlyCollapsed) {
+    toggleBtn.classList.add('expanded');
+    content.classList.remove('collapsed');
+  } else {
+    toggleBtn.classList.remove('expanded');
+    content.classList.add('collapsed');
+  }
+
+  const storageKey = section === 'channels' ? 'sectionChannelsCollapsed' : 'sectionAudibleCollapsed';
+  await chrome.storage.local.set({ [storageKey]: !isCurrentlyCollapsed });
 }
 
 // ─── Auto-Capture ────────────────────────────────────────────────────

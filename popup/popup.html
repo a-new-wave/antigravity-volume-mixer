@@ -41,12 +41,13 @@
 
     <!-- Active Channels -->
     <section class="mixer-section" id="mixer-channels-section">
-      <div class="section-label">
+      <div class="section-label section-toggle" id="toggle-channels">
+        <svg class="section-chevron" viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
         <span class="section-label-dot active"></span>
         <span>ACTIVE CHANNELS</span>
         <span class="channel-count" id="active-count">0</span>
       </div>
-      <div class="channels-container" id="channels-container">
+      <div class="channels-container section-collapsible collapsed" id="channels-container">
         <div class="empty-state" id="empty-state">
           <svg viewBox="0 0 24 24" width="28" height="28" opacity="0.3"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z"/></svg>
           <p>No active channels</p>
@@ -57,12 +58,13 @@
 
     <!-- Audible Tabs -->
     <section class="mixer-section" id="audible-section">
-      <div class="section-label">
+      <div class="section-label section-toggle" id="toggle-audible">
+        <svg class="section-chevron" viewBox="0 0 24 24" width="12" height="12"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
         <span class="section-label-dot audible"></span>
         <span>AUDIBLE TABS</span>
         <span class="channel-count" id="audible-count">0</span>
       </div>
-      <div class="audible-list" id="audible-list">
+      <div class="audible-list section-collapsible collapsed" id="audible-list">
         <div class="empty-state" id="audible-empty">
           <p class="empty-hint">No tabs playing audio</p>
         </div>
