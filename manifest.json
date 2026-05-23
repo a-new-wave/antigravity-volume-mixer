@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Antigravity Mixer",
+  "name": "Volume Master Pro",
   "version": "1.0.0",
-  "description": "The ultimate multi-channel volume mixer. Control volume up to 900%, 3-band EQ, presets, and VU metering — in a premium popup mixing board.",
+  "description": "The ultimate multi-channel volume mixer and booster. Control volume up to 900%, 3-band EQ, presets, and VU metering — in a premium popup board.",
   "permissions": [
     "tabCapture",
     "offscreen",
@@ -24,7 +24,7 @@
       "48": "icons/icon-48.svg",
       "128": "icons/icon-128.svg"
     },
-    "default_title": "Antigravity Mixer"
+    "default_title": "Volume Master Pro"
   },
   "background": {
     "service_worker": "background.js"

@@ -1,4 +1,4 @@
-// Antigravity Mixer – Background Service Worker
+// Volume Master Pro – Background Service Worker
 // All listeners are registered synchronously at top level.
 
 // ─── Initialise storage on installation ─────────────────────────────
@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener(async () => {
     channels: {},
     audibleTabs: {}
   });
-  console.log('Antigravity Mixer installed — session state initialised.');
+  console.log('Volume Master Pro installed — session state initialised.');
 });
 
 // ─── Helpers ─────────────────────────────────────────────────────────

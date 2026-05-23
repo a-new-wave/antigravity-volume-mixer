@@ -1,4 +1,4 @@
-// Antigravity Mixer – Popup Controller
+// Volume Master Pro – Popup Controller
 // Captures tab audio directly from popup context (valid user gesture).
 
 // ─── DOM Cache ───────────────────────────────────────────────────────
@@ -209,12 +209,7 @@ function attemptAutoCapture() {
 
 // ─── Toast notifications ─────────────────────────────────────────────
 function showToast(message, type = 'info', durationMs = 2500) {
-  statusToast.textContent = message;
-  statusToast.className = `status-toast ${type} show`;
-  if (toastTimer) clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    statusToast.classList.remove('show');
-  }, durationMs);
+  // Disabled as per user request (actions are performed silently)
 }
 
 // ─── State refresh ───────────────────────────────────────────────────

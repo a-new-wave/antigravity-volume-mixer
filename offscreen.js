@@ -1,4 +1,4 @@
-// Offscreen Audio Engine for Antigravity Mixer
+// Offscreen Audio Engine for Volume Master Pro
 const captures = new Map();
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
